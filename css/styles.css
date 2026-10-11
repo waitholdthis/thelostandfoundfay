@@ -63,6 +63,7 @@ body {
 }
 
 img, svg { display: block; max-width: 100%; }
+[hidden] { display: none !important; }
 a { color: inherit; }
 strong { font-weight: 500; color: var(--ink); }
 
@@ -197,7 +198,7 @@ h2 { font-size: clamp(2.4rem, 1.7rem + 3vw, 4.2rem); letter-spacing: .005em; }
 .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-of-type(2) { transform: translateY(4.25px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-of-type(3) { transform: translateY(-4.25px) rotate(-45deg); }
 
-@media (max-width: 720px) {
+@media (max-width: 1080px) {
   .nav-toggle { display: flex; }
   .site-nav { background: rgba(247, 240, 232, .94); padding-block: 8px; }
   .nav-mark { opacity: 1; transform: none; pointer-events: auto; }
@@ -502,6 +503,9 @@ h2 { font-size: clamp(2.4rem, 1.7rem + 3vw, 4.2rem); letter-spacing: .005em; }
 .find { margin: 0; position: relative; overflow: hidden; padding: 6px; }
 .find svg { transition: transform 1.4s var(--ease); }
 .find:hover svg { transform: scale(1.05); }
+.find__photo { width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform 1.4s var(--ease); }
+.find:hover .find__photo { transform: scale(1.05); }
+.find__price { display: block; font-family: var(--font-script); font-style: normal; font-size: 1.5rem; line-height: 1; color: var(--sage-deep); margin-top: 4px; }
 .find:nth-child(2) { transition-delay: .08s; }
 .find:nth-child(3) { transition-delay: .16s; }
 .find:nth-child(4) { transition-delay: .24s; }
@@ -606,6 +610,256 @@ h2 { font-size: clamp(2.4rem, 1.7rem + 3vw, 4.2rem); letter-spacing: .005em; }
 @keyframes bars { from { height: 3px; } to { height: 12px; } }
 
 /* ==========================================================================
+   The Drawer of the Day
+   ========================================================================== */
+.drawer-day {
+  display: grid; grid-template-columns: 1fr minmax(0, 460px); gap: clamp(40px, 7vw, 110px); align-items: center;
+  padding: clamp(80px, 11vw, 150px) max(var(--gutter), (100% - var(--max)) / 2);
+  background: var(--paper-2);
+  border-block: 1px solid var(--taupe-light);
+}
+.drawer-day__text .crest { margin-left: 0; }
+.drawer-day h2 em { color: var(--fleur-deep); font-weight: 400; }
+.drawer-day__date { font-size: 2rem; line-height: 1.2; margin: .4rem 0 1rem; color: var(--taupe); }
+.drawer-day__text > p:not(.eyebrow):not(.drawer-day__date) { color: var(--ink-soft); max-width: 30em; }
+.drawer-day__text .btn { margin-top: .8rem; }
+.drawer-day__note { font-style: italic; font-size: .95rem; margin-top: 1rem; }
+
+/* Stage: the card lives in a slot that ends at the nightstand's top, so it rises out of view → into view */
+.drawer-stage { position: relative; width: 100%; max-width: 460px; justify-self: center; aspect-ratio: 400 / 640; }
+.drawer-slot {
+  position: absolute; left: 0; right: 0; top: 0; height: 59%;
+  overflow: hidden; z-index: 1;
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.nightstand { position: absolute; left: 0; bottom: 0; width: 100%; height: auto; z-index: 2; }
+.drawer-cavity { fill: #3b3631; }
+.drawer-front {
+  cursor: pointer;
+  transform-box: fill-box; transform-origin: 50% 0;
+  transition: transform .7s var(--ease);
+}
+.drawer-stage.is-open .drawer-front { transform: translateY(26px) scale(1.07); }
+
+.drawer-card {
+  width: 84%; max-height: calc(100% - 8px);
+  border-width: 20px; border-image-width: 20px;
+  padding: 6px 10px 10px;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transform: translateY(105%);
+  transition: transform .9s var(--ease) .25s;
+}
+.drawer-stage.is-open .drawer-card { transform: none; }
+.drawer-card__art { width: 100%; display: flex; justify-content: center; }
+.drawer-card__art svg, .drawer-card__art img { width: auto; height: clamp(84px, 14vw, 130px); max-width: 100%; object-fit: contain; }
+.drawer-card__era { font-family: var(--font-display); font-weight: 600; font-size: .75rem; letter-spacing: .26em; text-transform: uppercase; color: var(--fleur-deep); margin: .4rem 0 .2rem; }
+.drawer-card__title { font-size: clamp(1.3rem, 1.1rem + .8vw, 1.65rem); line-height: 1.15; }
+.drawer-card__desc {
+  font-size: .98rem; line-height: 1.45; color: var(--ink-soft); font-style: italic; margin: .5rem 0 0;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.drawer-card__price { font-family: var(--font-script); font-size: 1.9rem; line-height: 1; color: var(--sage-deep); margin: .4rem 0 0; }
+.drawer-card__price:empty { display: none; }
+
+@media (max-width: 900px) {
+  .drawer-day { grid-template-columns: 1fr; }
+  .drawer-stage { max-width: 400px; }
+}
+
+/* ==========================================================================
+   Shop Map
+   ========================================================================== */
+.map { padding: clamp(90px, 12vw, 150px) var(--gutter); }
+.map__layout {
+  max-width: var(--max); margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(260px, 1fr); gap: clamp(24px, 4vw, 48px); align-items: start;
+}
+.map__plan { margin: 0; padding: 10px 10px 6px; text-align: center; }
+.map__plan figcaption { font-size: 1.35rem; line-height: 1.2; margin-top: .2rem; }
+.plan { width: 100%; height: auto; }
+.plan__caption { font-family: var(--font-display); font-style: italic; font-size: 17px; fill: var(--ink-soft); }
+
+.zone { cursor: pointer; }
+.zone__area {
+  fill: transparent; stroke: var(--taupe); stroke-width: 1.4; stroke-dasharray: 5 5;
+  transition: fill .35s, stroke .35s;
+}
+.zone:hover .zone__area { fill: rgba(213, 214, 200, .35); }
+.zone.is-active .zone__area { fill: rgba(213, 214, 200, .6); stroke: var(--sage-deep); stroke-dasharray: none; stroke-width: 2; }
+.zone__badge circle { fill: var(--paper); stroke: var(--ink-line); stroke-width: 1.4; transition: fill .3s; }
+.zone__badge text { font-family: var(--font-display); font-weight: 600; font-size: 16px; text-anchor: middle; fill: var(--ink); }
+.zone.is-active .zone__badge circle { fill: var(--ink); }
+.zone.is-active .zone__badge text { fill: var(--paper); }
+.zone__label { font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 2.5px; text-transform: uppercase; fill: var(--ink); }
+.plan__fleur { color: var(--fleur); opacity: 0; pointer-events: none; }
+.plan__fleur.is-shown { opacity: 1; animation: fleurPulse 2.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes fleurPulse { 50% { transform: scale(1.14); } }
+
+.map__panel { display: grid; gap: 18px; }
+.map__detail { padding: 8px 12px 10px; min-height: 200px; }
+.map__detail h3 { font-size: clamp(1.6rem, 1.3rem + 1vw, 2.1rem); margin-bottom: .5rem; }
+.map__detail p { margin: 0; color: var(--ink-soft); }
+.map__badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-weight: 600; font-size: .75rem; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--fleur-deep) !important; margin-bottom: .6rem !important;
+}
+.map__badge svg { width: 18px; height: 20px; color: var(--fleur); }
+.map__legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.map__legend button {
+  width: 100%; min-height: 44px;
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  background: transparent; border: 1px solid rgba(157, 139, 117, .4); border-radius: 2px;
+  font-family: var(--font-display); font-weight: 500; font-size: 1.02rem; line-height: 1.15; text-align: left; color: var(--ink);
+  cursor: pointer; transition: background-color .3s, border-color .3s;
+}
+.map__legend button span {
+  flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  border: 1px solid var(--ink-line); font-weight: 600; font-size: .85rem;
+}
+.map__legend button:hover { background: var(--paper-2); }
+.map__legend button[aria-pressed="true"] { background: var(--sage-wash); border-color: var(--sage-deep); }
+.map__legend button[aria-pressed="true"] span { background: var(--ink); color: var(--paper); }
+.map__legend button.is-featured::after { content: "\269C"; margin-left: auto; color: var(--fleur); font-size: 1.1rem; }
+
+@media (max-width: 900px) {
+  .map__layout { grid-template-columns: 1fr; }
+  .map__detail { min-height: 0; }
+}
+@media (max-width: 560px) {
+  .zone__label { display: none; }               /* numbers + legend carry the names on phones */
+  .zone__badge circle { r: 18px; }
+  .zone__badge text { font-size: 20px; }
+  .map__plan.framed { border-width: 16px; border-image-width: 16px; padding: 4px; }
+  .map__legend { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   St. Jude running total
+   ========================================================================== */
+.impact__total { margin-bottom: clamp(2.4rem, 5vw, 3.4rem); }
+.impact__total-label {
+  font-family: var(--font-display); font-weight: 600; font-size: .78rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--gold) !important; margin: 0 0 .4rem !important;
+}
+.impact__total-figure {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(3.4rem, 2.2rem + 5vw, 6rem) !important; line-height: 1;
+  color: var(--paper) !important; margin: 0 0 .8rem !important;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.impact__total-zero { font-family: var(--font-display); font-style: italic; font-size: 1.5rem !important; color: var(--paper) !important; }
+.impact__milestone { display: flex; flex-direction: column; gap: .3rem; margin-bottom: .6rem; }
+.impact__sprig { width: min(320px, 100%); height: auto; }
+.impact__milestone p { font-size: .98rem !important; margin: 0 !important; }
+.impact__total-asof { font-style: italic; font-size: .9rem !important; opacity: .7; margin: 0 !important; }
+.sprig-stem { fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; }
+.sprig-leaf { fill: transparent; stroke: var(--gold); stroke-width: 1.2; transition: fill .5s ease; }
+.is-counted .sprig-leaf.is-filled { fill: var(--gold); }
+
+/* ==========================================================================
+   The Lost & Found Board
+   ========================================================================== */
+.lost {
+  padding: clamp(90px, 12vw, 150px) var(--gutter);
+  background: var(--linen);
+  background-image: radial-gradient(ellipse at 80% 0%, rgba(255, 246, 232, .7), transparent 60%);
+}
+.lost__layout {
+  max-width: var(--max); margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start;
+}
+.lost__form { padding: 10px 14px 12px; }
+.lost__form h3 { font-size: 1.7rem; margin-bottom: 1rem; text-align: center; }
+.field { display: block; margin-bottom: 14px; }
+.field > span {
+  display: block; margin-bottom: 5px;
+  font-family: var(--font-display); font-weight: 600; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ink);
+}
+.field small { text-transform: none; letter-spacing: 0; font-weight: 500; font-style: italic; font-size: .92rem; color: var(--ink-soft); }
+.field input, .field textarea {
+  width: 100%; min-height: 46px;
+  padding: 10px 12px;
+  font: inherit; font-size: 1.05rem; /* ≥16px keeps iOS from zooming in */
+  color: var(--ink); background: #fbf7f1;
+  border: 1px solid var(--taupe-light); border-radius: 2px;
+  box-shadow: inset 0 1px 2px rgba(60, 45, 30, .06);
+  transition: border-color .25s, box-shadow .25s;
+}
+.field textarea { resize: vertical; min-height: 90px; }
+.field input::placeholder, .field textarea::placeholder { color: #a99c8c; font-style: italic; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--sage-deep); box-shadow: 0 0 0 3px rgba(132, 134, 118, .25); }
+.field-row { display: grid; grid-template-columns: 1fr 124px; gap: 12px; }
+.field-row .field > span { white-space: nowrap; }
+.field--trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.lost__form .btn { width: 100%; margin-top: 4px; }
+.lost__form .btn:disabled { opacity: .6; cursor: progress; }
+.lost__privacy { font-size: .9rem; font-style: italic; color: var(--ink-soft); line-height: 1.5; margin: 12px 0 0; }
+.lost__status { margin: 10px 0 0; font-size: .98rem; line-height: 1.5; }
+.lost__status:empty { display: none; }
+.lost__status.is-ok { color: var(--sage-deep); }
+.lost__status.is-warn { color: var(--fleur-deep); }
+
+.lost__filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.lost__filters button {
+  min-height: 44px; padding: 8px 18px;
+  font-family: var(--font-display); font-weight: 600; font-size: .78rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink); background: transparent; border: 1px solid var(--taupe); border-radius: 30px; cursor: pointer;
+  transition: background-color .3s, color .3s;
+}
+.lost__filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+.lost__cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; }
+.lost-card {
+  --tilt: 0deg;
+  position: relative;
+  padding: 22px 20px 16px;
+  background: var(--paper);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .04), 0 14px 24px -18px rgba(70, 52, 32, .5);
+  transform: rotate(var(--tilt));
+  transition: transform .5s var(--ease);
+}
+.lost-card:hover { transform: rotate(0deg) translateY(-3px); }
+.lost-card::before { /* brass pin */
+  content: ""; position: absolute; top: 8px; left: 50%; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ecd9b0, #a88a5a 70%);
+  box-shadow: 0 2px 3px rgba(60, 40, 20, .35);
+}
+.lost-card__label { display: block; font-family: var(--font-display); font-weight: 600; font-size: .72rem; letter-spacing: .26em; text-transform: uppercase; color: var(--fleur-deep); margin-top: 6px; }
+.lost-card__item { font-size: 1.4rem; line-height: 1.15; margin: .3rem 0 .4rem; overflow-wrap: anywhere; }
+.lost-card__details { font-size: .98rem; line-height: 1.45; color: var(--ink-soft); margin: 0 0 .5rem; overflow-wrap: anywhere; }
+.lost-card__note { font-family: var(--font-script); font-size: 1.6rem; line-height: 1.1; color: var(--sage-deep); margin: 0 0 .4rem; }
+.lost-card__by { font-style: italic; font-size: .92rem; color: var(--taupe); margin: 0; }
+.lost-card.is-found { background: #f4f2e9; }
+.lost-card.is-found .lost-card__item { text-decoration: line-through; text-decoration-color: rgba(95, 100, 85, .45); text-decoration-thickness: 1px; }
+.lost-card.is-found .lost-card__label { color: var(--sage-deep); }
+/* A big, faint rubber stamp across the card, so the writing underneath stays legible */
+.lost-card__stamp {
+  position: absolute; left: 50%; top: 50%; z-index: 0;
+  padding: 6px 16px 4px;
+  font-family: var(--font-display); font-weight: 600; font-size: 2rem; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--sage-deep);
+  border: 3px solid currentColor; border-radius: 4px;
+  box-shadow: inset 0 0 0 3px #f4f2e9, inset 0 0 0 4.5px currentColor;
+  transform: translate(-50%, -50%) rotate(-16deg);
+  opacity: .22;
+  pointer-events: none;
+}
+.lost-card > :not(.lost-card__stamp) { position: relative; z-index: 1; }
+.lost__empty { font-family: var(--font-display); font-style: italic; font-size: 1.35rem; color: var(--ink-soft); text-align: center; padding: 40px 10px; border: 1px dashed var(--taupe-light); }
+
+@media (max-width: 900px) {
+  .lost__layout { grid-template-columns: 1fr; }
+  .lost__form { max-width: 520px; width: 100%; justify-self: center; }
+}
+@media (max-width: 720px) {
+  .lost__form.framed { border-width: 18px; border-image-width: 18px; padding: 6px 4px 8px; }
+  .lost__cards { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
    Touch & small screens
    ========================================================================== */
 /* Comfortable 44px tap targets everywhere */
@@ -622,7 +876,7 @@ h2 { font-size: clamp(2.4rem, 1.7rem + 3vw, 4.2rem); letter-spacing: .005em; }
 
 /* Don't let hover-only effects stick after a tap on touch screens */
 @media (hover: none) {
-  .find:hover svg { transform: none; }
+  .find:hover svg, .find:hover .find__photo { transform: none; }
   .btn:hover, .connect__item:hover { transform: none; }
 }
 

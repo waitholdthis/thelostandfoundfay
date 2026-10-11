@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Shoppe Office · The Lost and Found Thrift Shoppe</title>
+  <meta name="theme-color" content="#f7f0e8">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Sacramento&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="office-page">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="fleur" viewBox="0 0 40 44">
+        <g fill="currentColor">
+          <path d="M20 2 C25 9 26 17 20 27 C14 17 15 9 20 2Z"/>
+          <path d="M18 27 C9 28 2 22 5 14 C7 9 13 9 14 13 C15 17 12 18 11 16 C10 20 14 24 18 24Z"/>
+          <path d="M22 27 C31 28 38 22 35 14 C33 9 27 9 26 13 C25 17 28 18 29 16 C30 20 26 24 22 24Z"/>
+          <rect x="12" y="26" width="16" height="3.2" rx="1.2"/>
+          <path d="M17.5 29.5 L20 41 L22.5 29.5Z"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ Header ============ -->
+  <header class="office-bar">
+    <div class="office-bar__mark">
+      <span class="office-bar__name">Lost <em>and</em> Found</span>
+      <span class="office-bar__caps">Shoppe Office</span>
+    </div>
+    <span class="office-mode" id="office-mode" hidden></span>
+    <nav class="office-bar__links">
+      <a id="view-site" href="./" target="_blank" rel="noopener">View website &nearr;</a>
+      <button type="button" class="linklike" id="sign-out" hidden>Sign out</button>
+    </nav>
+  </header>
+
+  <!-- ============ Sign in ============ -->
+  <main class="office-main">
+    <section class="office-login framed" id="login" hidden>
+      <svg class="office-login__fleur" aria-hidden="true"><use href="#fleur"/></svg>
+      <h1>Welcome back</h1>
+      <p id="login-intro">Enter the shoppe&rsquo;s passcode to update the website.</p>
+      <form id="login-form">
+        <label class="field">
+          <span>Passcode</span>
+          <input name="passcode" id="passcode" autocomplete="current-password" autocapitalize="characters" spellcheck="false" required>
+        </label>
+        <button class="btn btn--ink" type="submit">Open the office</button>
+        <p class="office-login__error" id="login-error" role="alert"></p>
+      </form>
+      <p class="office-login__help">Lost the passcode? Run <strong>resetPasscode</strong> in the Google Sheet&rsquo;s Apps Script, and a new one will be emailed to the shoppe.</p>
+    </section>
+
+    <!-- ============ Office ============ -->
+    <div class="office" id="office" hidden>
+      <div class="office-practice" id="practice-note" hidden>
+        <strong>Practice mode.</strong> The Google Sheet isn&rsquo;t connected yet, so changes are saved only in this browser.
+        See them on the site at <a href="./?practice" target="_blank" rel="noopener">/?practice</a>.
+        <button type="button" class="linklike" id="practice-reset">Start over with sample items</button>
+      </div>
+
+      <div class="office-tabs" role="tablist" aria-label="Sections">
+        <button role="tab" id="tab-finds" aria-controls="panel-finds" aria-selected="true">New Finds</button>
+        <button role="tab" id="tab-drawer" aria-controls="panel-drawer" aria-selected="false" tabindex="-1">Drawer</button>
+        <button role="tab" id="tab-impact" aria-controls="panel-impact" aria-selected="false" tabindex="-1">St. Jude</button>
+        <button role="tab" id="tab-map" aria-controls="panel-map" aria-selected="false" tabindex="-1">Shop Map</button>
+        <button role="tab" id="tab-lost" aria-controls="panel-lost" aria-selected="false" tabindex="-1">Lost Board <span class="office-count" id="lost-pending-count" hidden></span></button>
+      </div>
+
+      <!-- New Finds -->
+      <section class="office-panel" id="panel-finds" role="tabpanel" aria-labelledby="tab-finds">
+        <div class="office-split">
+          <form class="office-form framed" id="find-form">
+            <h2 id="find-form-title">Add a new find</h2>
+            <div class="photo-picker" data-for="find">
+              <img class="photo-picker__preview" alt="" hidden>
+              <label class="photo-picker__drop">
+                <input type="file" accept="image/*" class="photo-picker__input">
+                <span class="photo-picker__cta">Take or choose a photo</span>
+                <small>It&rsquo;s resized automatically before uploading.</small>
+              </label>
+              <button type="button" class="linklike photo-picker__remove" hidden>Remove photo</button>
+              <input type="hidden" name="photo">
+            </div>
+            <label class="field"><span>Title</span><input name="title" required maxlength="80" placeholder="Mid-century brass lamp"></label>
+            <div class="field-row field-row--even">
+              <label class="field"><span>Label</span>
+                <select name="label">
+                  <option>New arrival</option><option>Restock</option><option>Featured</option>
+                  <option>Just in</option><option>Weekly drop</option><option>Handmade</option><option>Vintage</option>
+                </select>
+              </label>
+              <label class="field"><span>Price <small>(optional)</small></span><input name="price" maxlength="20" placeholder="$24"></label>
+            </div>
+            <label class="field"><span>Description <small>(optional)</small></span><textarea name="description" rows="3" maxlength="300" placeholder="A sentence about what makes it special"></textarea></label>
+            <label class="field"><span>No photo? Use a drawing</span>
+              <select name="sketch">
+                <option value="">None</option><option value="lamp">Lamp</option><option value="denim">Denim jacket</option>
+                <option value="books">Books</option><option value="ceramics">Ceramics</option><option value="glass">Glassware</option>
+                <option value="vinyl">Record player</option><option value="teacups">Teacups</option><option value="chair">Armchair</option>
+              </select>
+            </label>
+            <label class="check"><input type="checkbox" name="show" checked> Show on the website</label>
+            <input type="hidden" name="id">
+            <div class="office-form__actions">
+              <button class="btn btn--ink" type="submit">Save find</button>
+              <button class="btn btn--line" type="button" data-cancel hidden>Cancel</button>
+            </div>
+          </form>
+          <div class="office-list-wrap">
+            <h2>Your finds</h2>
+            <p class="office-hint">The website shows your six newest finds that are set to &ldquo;show.&rdquo;</p>
+            <ul class="office-list" id="find-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Drawer of the Day -->
+      <section class="office-panel" id="panel-drawer" role="tabpanel" aria-labelledby="tab-drawer" hidden>
+        <div class="office-split">
+          <form class="office-form framed" id="drawer-form">
+            <h2 id="drawer-form-title">Tuck a find in the drawer</h2>
+            <div class="photo-picker" data-for="drawer">
+              <img class="photo-picker__preview" alt="" hidden>
+              <label class="photo-picker__drop">
+                <input type="file" accept="image/*" class="photo-picker__input">
+                <span class="photo-picker__cta">Take or choose a photo</span>
+                <small>Or pick a drawing below.</small>
+              </label>
+              <button type="button" class="linklike photo-picker__remove" hidden>Remove photo</button>
+              <input type="hidden" name="photo">
+            </div>
+            <label class="field"><span>Title</span><input name="title" required maxlength="80" placeholder="Pressed-glass goblet set"></label>
+            <div class="field-row field-row--even">
+              <label class="field"><span>Era <small>(optional)</small></span><input name="era" maxlength="40" placeholder="c. 1940s"></label>
+              <label class="field"><span>Price <small>(optional)</small></span><input name="price" maxlength="20" placeholder="$24"></label>
+            </div>
+            <label class="field"><span>Description</span><textarea name="description" rows="3" maxlength="240" placeholder="What makes it today's treasure?"></textarea></label>
+            <div class="field-row field-row--even">
+              <label class="field"><span>Show on <small>(optional)</small></span><input name="date" type="date"></label>
+              <label class="field"><span>Drawing</span>
+                <select name="sketch">
+                  <option value="teacups">Teacups</option><option value="lamp">Lamp</option><option value="denim">Denim jacket</option>
+                  <option value="books">Books</option><option value="ceramics">Ceramics</option><option value="glass">Glassware</option>
+                  <option value="vinyl">Record player</option><option value="chair">Armchair</option>
+                </select>
+              </label>
+            </div>
+            <p class="office-hint">Leave the date empty and the find takes its turn in the daily rotation.</p>
+            <input type="hidden" name="id">
+            <div class="office-form__actions">
+              <button class="btn btn--ink" type="submit">Save to the drawer</button>
+              <button class="btn btn--line" type="button" data-cancel hidden>Cancel</button>
+            </div>
+          </form>
+          <div class="office-list-wrap">
+            <h2>In the drawer</h2>
+            <ul class="office-list" id="drawer-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- St. Jude total -->
+      <section class="office-panel" id="panel-impact" role="tabpanel" aria-labelledby="tab-impact" hidden>
+        <form class="office-form office-form--narrow framed" id="impact-form">
+          <h2>Running total for St. Jude</h2>
+          <label class="field"><span>Total given so far ($)</span><input name="total" type="number" min="0" step="1" inputmode="numeric" required></label>
+          <label class="field"><span>Next milestone ($)</span><input name="nextMilestone" type="number" min="0" step="1" inputmode="numeric"></label>
+          <p class="office-hint" id="impact-hint"></p>
+          <div class="office-form__actions"><button class="btn btn--ink" type="submit">Update the total</button></div>
+        </form>
+      </section>
+
+      <!-- Shop Map -->
+      <section class="office-panel" id="panel-map" role="tabpanel" aria-labelledby="tab-map" hidden>
+        <form class="office-form office-form--wide framed" id="map-form">
+          <h2>Corners of the shoppe</h2>
+          <p class="office-hint">Choose one corner to feature this week. It gets the fleur-de-lis on the map.</p>
+          <div class="map-rows" id="map-rows"></div>
+          <label class="check"><input type="radio" name="featured" value=""> No featured corner this week</label>
+          <div class="office-form__actions"><button class="btn btn--ink" type="submit">Save the map</button></div>
+        </form>
+      </section>
+
+      <!-- Lost Board -->
+      <section class="office-panel" id="panel-lost" role="tabpanel" aria-labelledby="tab-lost" hidden>
+        <div class="office-filters" role="group" aria-label="Show cards">
+          <button type="button" data-status="pending" aria-pressed="true">Waiting for approval</button>
+          <button type="button" data-status="looking" aria-pressed="false">On the board</button>
+          <button type="button" data-status="found" aria-pressed="false">Found</button>
+          <button type="button" data-status="hidden" aria-pressed="false">Hidden</button>
+        </div>
+        <ul class="office-list office-list--cards" id="lost-list"></ul>
+      </section>
+    </div>
+
+    <p class="office-loading" id="loading">Opening the office&hellip;</p>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/admin.js" defer></script>
+</body>
+</html>
