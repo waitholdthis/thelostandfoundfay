@@ -75,9 +75,11 @@
     </button>
     <nav class="nav-links" id="nav-links" aria-label="Primary">
       <a href="#origin">Our Story</a>
+      <a href="#drawer">The Drawer</a>
+      <a href="#map">Shop Map</a>
       <a href="#impact">St. Jude</a>
       <a href="#visit">Visit</a>
-      <a href="#finds">New Finds</a>
+      <a href="#lost">Lost Board</a>
     </nav>
   </header>
 
@@ -120,7 +122,7 @@
           <figcaption class="script">thoughtfully chosen</figcaption>
         </figure>
         <figure class="framed reveal">
-          <svg class="sketch" viewBox="0 0 400 280" role="img" aria-label="Vintage teacups and a teapot arranged on a wooden shelf">
+          <svg class="sketch" data-sketch="teacups" viewBox="0 0 400 280" role="img" aria-label="Vintage teacups and a teapot arranged on a wooden shelf">
             <g class="ink">
               <path d="M24 214 H376 M24 222 H376"/>
               <path d="M70 222 v14 l14 0 M330 222 v14 l-14 0"/>
@@ -172,6 +174,194 @@
       </div>
     </section>
 
+    <!-- ============ The Drawer of the Day ============ -->
+    <section class="drawer-day" id="drawer" aria-labelledby="drawer-title">
+      <div class="drawer-day__text">
+        <svg class="crest reveal" aria-hidden="true"><use href="#crest"/></svg>
+        <p class="eyebrow reveal">The Drawer of the Day</p>
+        <h2 class="reveal" id="drawer-title">Open the <em>drawer</em></h2>
+        <p class="drawer-day__date script reveal" id="drawer-date"></p>
+        <p class="reveal">Every morning we tuck one special find into the little nightstand by the door. Open it to see today&rsquo;s treasure&mdash;then come by before someone else does.</p>
+        <button class="btn btn--ink reveal" id="drawer-open" type="button" aria-controls="drawer-card" aria-expanded="false">Open the drawer</button>
+        <p class="drawer-day__note reveal">A new find every morning.</p>
+      </div>
+
+      <div class="drawer-stage reveal" id="drawer-stage">
+        <div class="drawer-slot">
+          <article class="drawer-card framed" id="drawer-card" aria-live="polite" hidden>
+            <div class="drawer-card__art" id="drawer-art"></div>
+            <p class="drawer-card__era" id="drawer-era"></p>
+            <h3 class="drawer-card__title" id="drawer-item"></h3>
+            <p class="drawer-card__desc" id="drawer-desc"></p>
+            <p class="drawer-card__price" id="drawer-price"></p>
+          </article>
+        </div>
+        <svg class="nightstand sketch" viewBox="0 0 400 330" aria-hidden="true">
+          <g class="ink">
+            <path class="w-taupe" d="M44 74 H356 L374 94 H26 Z"/>
+            <rect class="w-taupe" x="26" y="94" width="348" height="14" rx="3"/>
+            <rect class="w-paper" x="44" y="108" width="312" height="180"/>
+            <rect class="drawer-cavity" x="66" y="122" width="268" height="70"/>
+            <g class="drawer-front">
+              <rect class="w-taupe" x="66" y="122" width="268" height="70" rx="4"/>
+              <rect x="80" y="133" width="240" height="48" rx="3" stroke-opacity=".55"/>
+              <circle class="w-clay" cx="200" cy="157" r="7"/>
+              <path d="M150 157 h28 M222 157 h28" stroke-opacity=".35"/>
+            </g>
+            <rect class="w-taupe" x="66" y="204" width="268" height="70" rx="4"/>
+            <rect x="80" y="215" width="240" height="48" rx="3" stroke-opacity=".55"/>
+            <circle class="w-clay" cx="200" cy="239" r="7"/>
+            <path class="w-paper" d="M44 288 Q200 312 356 288 Z"/>
+            <path class="w-taupe" d="M52 288 c2 16 -2 28 -12 38 h12 c8 -9 14 -22 16 -38 z"/>
+            <path class="w-taupe" d="M348 288 c-2 16 2 28 12 38 h-12 c-8 -9 -14 -22 -16 -38 z"/>
+            <path d="M14 328 H386" stroke-dasharray="2 7"/>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ============ Shop Map ============ -->
+    <section class="map" id="map" aria-labelledby="map-title">
+      <header class="section-head">
+        <svg class="crest reveal" aria-hidden="true"><use href="#crest"/></svg>
+        <p class="eyebrow reveal">Find Your Way</p>
+        <h2 class="reveal" id="map-title">Wander the Shoppe</h2>
+        <p class="section-head__lede reveal">Every corner has its own character. Choose a corner to see what lives there&mdash;and look for the fleur-de-lis marking this week&rsquo;s featured corner.</p>
+      </header>
+
+      <div class="map__layout">
+        <figure class="map__plan framed reveal">
+          <svg class="plan sketch" viewBox="0 0 800 560" aria-hidden="true" id="plan">
+            <g class="ink">
+              <!-- walls -->
+              <rect x="30" y="30" width="740" height="442" stroke-width="3"/>
+              <rect x="38" y="38" width="724" height="426" stroke-opacity=".5"/>
+              <rect x="356" y="460" width="88" height="16" style="fill:var(--paper)" stroke="none"/>
+              <rect x="764" y="86" width="12" height="56" style="fill:var(--paper)" stroke="none"/>
+              <path d="M360 468 V396" /><path d="M360 396 A72 72 0 0 1 432 468" stroke-dasharray="4 5" stroke-opacity=".6"/>
+              <rect class="w-blue" x="84" y="466" width="236" height="8"/>
+              <rect class="w-blue" x="480" y="466" width="236" height="8"/>
+              <!-- awning at the front door -->
+              <path d="M330 478 H470 V490 q-7 8 -14 0 q-7 8 -14 0 q-7 8 -14 0 q-7 8 -14 0 q-7 8 -14 0 q-7 8 -14 0 q-7 8 -14 0 q-7 8 -14 0 q-7 8 -14 0 q-7 8 -14 0 Z" style="fill:var(--awning-blue)" stroke="none"/>
+            </g>
+            <text class="plan__caption" x="400" y="530" text-anchor="middle">Front door &middot; 236 Dunn Road</text>
+            <text class="plan__caption" x="786" y="118" text-anchor="middle" transform="rotate(90 786 118)">back door</text>
+
+            <!-- 1 Front window -->
+            <g class="zone" data-zone="window">
+              <rect class="zone__area" x="56" y="404" width="276" height="50" rx="4"/>
+              <rect class="zone__area" x="468" y="404" width="276" height="50" rx="4"/>
+              <g class="ink"><path d="M90 440 q14 -26 28 0 M140 444 v-24 h16 v24 M180 440 q10 -20 20 0 M520 444 v-20 h22 v20 M580 440 q12 -24 24 0 M640 444 l8 -22 l8 22"/></g>
+              <g class="zone__badge"><circle cx="246" cy="429" r="14"/><text x="246" y="434">1</text></g>
+              <text class="zone__label" x="276" y="434">Window</text>
+            </g>
+            <!-- 2 Glassware -->
+            <g class="zone" data-zone="glassware">
+              <rect class="zone__area" x="52" y="52" width="152" height="240" rx="4"/>
+              <g class="ink">
+                <path d="M62 120 H194 M62 180 H194 M62 240 H194" stroke-width="2.4"/>
+                <path d="M74 118 q0 -20 10 -20 q10 0 10 20 M110 118 v-18 h14 v18 M146 118 q-6 -16 8 -22 q14 6 8 22 M74 178 l4 -18 h12 l4 18 M112 178 q0 -16 10 -18 q10 2 10 18 M152 178 v-22 h10 v22 M80 238 q0 -14 12 -14 q12 0 12 14 M126 238 v-16 h16 v16 M162 238 q-4 -18 10 -20 q12 2 8 20"/>
+              </g>
+              <g class="zone__badge"><circle cx="76" cy="270" r="14"/><text x="76" y="275">2</text></g>
+              <text class="zone__label" x="98" y="275">Glassware</text>
+            </g>
+            <!-- 3 Linens -->
+            <g class="zone" data-zone="linens">
+              <rect class="zone__area" x="216" y="52" width="184" height="122" rx="4"/>
+              <g class="ink">
+                <rect class="w-clay" x="232" y="70" width="44" height="12" rx="2"/><rect class="w-paper" x="232" y="82" width="44" height="12" rx="2"/><rect class="w-sage" x="232" y="94" width="44" height="12" rx="2"/>
+                <rect class="w-blue" x="290" y="76" width="44" height="12" rx="2"/><rect class="w-taupe" x="290" y="88" width="44" height="12" rx="2"/><rect class="w-paper" x="290" y="100" width="44" height="6" rx="2"/>
+                <rect class="w-paper" x="348" y="70" width="40" height="12" rx="2"/><rect class="w-clay" x="348" y="82" width="40" height="12" rx="2"/><rect class="w-blue" x="348" y="94" width="40" height="12" rx="2"/>
+              </g>
+              <g class="zone__badge"><circle cx="240" cy="150" r="14"/><text x="240" y="155">3</text></g>
+              <text class="zone__label" x="262" y="155">Linens</text>
+            </g>
+            <!-- 4 Furniture -->
+            <g class="zone" data-zone="furniture">
+              <rect class="zone__area" x="412" y="52" width="210" height="182" rx="4"/>
+              <g class="ink">
+                <rect class="w-taupe" x="430" y="68" width="96" height="40" rx="8"/><path d="M430 80 h96 M444 68 v40 M512 68 v40"/>
+                <circle class="w-paper" cx="574" cy="104" r="24"/><rect class="w-sage" x="562" y="66" width="24" height="12" rx="3"/><rect class="w-sage" x="562" y="130" width="24" height="12" rx="3"/>
+                <rect class="w-clay" x="444" y="132" width="40" height="40" rx="6"/><path d="M444 140 h40"/>
+                <circle cx="510" cy="160" r="9"/><circle cx="510" cy="160" r="3"/>
+              </g>
+              <g class="zone__badge"><circle cx="436" cy="210" r="14"/><text x="436" y="215">4</text></g>
+              <text class="zone__label" x="458" y="215">Furniture</text>
+            </g>
+            <!-- 5 Donations -->
+            <g class="zone" data-zone="donations">
+              <rect class="zone__area" x="634" y="52" width="122" height="140" rx="4"/>
+              <g class="ink">
+                <rect class="w-taupe" x="650" y="68" width="38" height="34"/><path d="M650 68 l38 34 M688 68 l-38 34" stroke-opacity=".5"/>
+                <rect class="w-taupe" x="698" y="76" width="42" height="40"/><path d="M698 96 h42" stroke-opacity=".5"/>
+                <rect class="w-taupe" x="660" y="112" width="32" height="28"/>
+              </g>
+              <g class="zone__badge"><circle cx="658" cy="168" r="14"/><text x="658" y="173">5</text></g>
+              <text class="zone__label" x="680" y="173">Donate</text>
+            </g>
+            <!-- 6 Books & records -->
+            <g class="zone" data-zone="books">
+              <rect class="zone__area" x="52" y="304" width="152" height="90" rx="4"/>
+              <g class="ink">
+                <rect class="w-paper" x="62" y="314" width="132" height="14"/>
+                <path d="M72 314 v14 M80 314 v14 M92 314 v14 M100 314 v14 M114 314 v14 M124 314 v14 M136 314 v14 M150 314 v14 M160 314 v14 M174 314 v14 M182 314 v14" stroke-opacity=".5"/>
+                <rect class="w-taupe" x="150" y="336" width="40" height="30" rx="2"/><path d="M156 342 v18 M162 342 v18 M168 342 v18 M174 342 v18" stroke-opacity=".5"/>
+              </g>
+              <g class="zone__badge"><circle cx="76" cy="370" r="14"/><text x="76" y="375">6</text></g>
+              <text class="zone__label" x="98" y="375">Books</text>
+            </g>
+            <!-- 7 Clothing -->
+            <g class="zone" data-zone="clothing">
+              <rect class="zone__area" x="216" y="186" width="298" height="208" rx="4"/>
+              <g class="ink">
+                <path d="M236 214 H410 M236 262 H410" stroke-width="2.4"/>
+                <path d="M248 206 v16 M262 206 v16 M276 206 v16 M290 206 v16 M304 206 v16 M318 206 v16 M332 206 v16 M346 206 v16 M360 206 v16 M374 206 v16 M388 206 v16 M402 206 v16"/>
+                <path d="M248 254 v16 M262 254 v16 M276 254 v16 M290 254 v16 M304 254 v16 M318 254 v16 M332 254 v16 M346 254 v16 M360 254 v16 M374 254 v16 M388 254 v16 M402 254 v16"/>
+                <circle cx="460" cy="306" r="34" stroke-width="2.4"/><circle cx="460" cy="306" r="4"/>
+                <path d="M460 268 v10 M498 306 h-10 M460 344 v-10 M422 306 h10 M433 279 l7 7 M487 279 l-7 7 M487 333 l-7 -7 M433 333 l7 -7"/>
+                <rect class="w-clay" x="240" y="300" width="60" height="44" rx="4"/><path d="M270 300 v44" stroke-opacity=".5"/>
+              </g>
+              <g class="zone__badge"><circle cx="240" cy="370" r="14"/><text x="240" y="375">7</text></g>
+              <text class="zone__label" x="262" y="375">Clothing</text>
+            </g>
+            <!-- 8 Counter -->
+            <g class="zone" data-zone="counter">
+              <rect class="zone__area" x="530" y="246" width="226" height="148" rx="4"/>
+              <g class="ink">
+                <path class="w-taupe" d="M560 262 H736 V292 H600 V362 H560 Z"/>
+                <rect class="w-paper" x="680" y="266" width="30" height="22" rx="2"/>
+                <circle class="w-paper" cx="578" cy="290" r="8"/><circle class="w-coffee" cx="578" cy="290" r="4"/>
+              </g>
+              <g class="zone__badge"><circle cx="634" cy="370" r="14"/><text x="634" y="375">8</text></g>
+              <text class="zone__label" x="656" y="375">Counter</text>
+            </g>
+
+            <!-- "This week's corner" marker, positioned by script -->
+            <use class="plan__fleur" id="plan-fleur" href="#fleur" width="30" height="34" x="-100" y="-100"/>
+          </svg>
+          <figcaption class="script">an illustrated map &mdash; our shelves move as often as our inventory</figcaption>
+        </figure>
+
+        <div class="map__panel">
+          <div class="map__detail framed reveal" aria-live="polite">
+            <p class="map__badge" id="map-badge" hidden><svg aria-hidden="true"><use href="#fleur"/></svg> This week&rsquo;s corner</p>
+            <h3 id="map-zone-title">Choose a corner</h3>
+            <p id="map-zone-blurb">Tap any corner of the map, or pick one below.</p>
+          </div>
+          <ol class="map__legend reveal" id="map-legend">
+            <li><button type="button" data-zone="window"><span>1</span>Front Window</button></li>
+            <li><button type="button" data-zone="glassware"><span>2</span>Glassware &amp; Kitchen</button></li>
+            <li><button type="button" data-zone="linens"><span>3</span>Linens &amp; Textiles</button></li>
+            <li><button type="button" data-zone="furniture"><span>4</span>Furniture &amp; D&eacute;cor</button></li>
+            <li><button type="button" data-zone="donations"><span>5</span>Donation Drop-off</button></li>
+            <li><button type="button" data-zone="books"><span>6</span>Books &amp; Records</button></li>
+            <li><button type="button" data-zone="clothing"><span>7</span>Clothing &amp; Denim</button></li>
+            <li><button type="button" data-zone="counter"><span>8</span>Checkout &amp; Coffee</button></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ 3. Impact: St. Jude ============ -->
     <section class="impact" id="impact" aria-labelledby="impact-title">
       <div class="impact__inner">
@@ -180,6 +370,16 @@
         <svg class="impact__rule reveal" aria-hidden="true"><use href="#rule"/></svg>
         <div class="impact__grid">
           <div class="impact__copy">
+            <div class="impact__total" id="impact-total" hidden>
+              <p class="impact__total-label">Given to St. Jude since we opened</p>
+              <p class="impact__total-figure" id="impact-amount">$0</p>
+              <p class="impact__total-zero" id="impact-zero" hidden>Our running total begins with our very first sale&mdash;check back soon to watch it grow.</p>
+              <div class="impact__milestone" id="impact-milestone" hidden>
+                <svg class="impact__sprig" id="impact-sprig" viewBox="0 0 320 60" aria-hidden="true"></svg>
+                <p id="impact-next"></p>
+              </div>
+              <p class="impact__total-asof" id="impact-asof"></p>
+            </div>
             <p class="reveal">At The Lost and Found Thrift Shoppe, every discovery carries meaning. A portion of every sale goes directly to support <strong>St. Jude Children&rsquo;s Research Hospital</strong> in their relentless mission to treat and defeat childhood cancer and other life-threatening diseases.</p>
             <blockquote class="impact__pull reveal">
               Families never receive a bill from St. Jude for treatment, travel, housing, or food&mdash;because all a family should worry about is helping their child live.
@@ -254,7 +454,7 @@
       <!-- Engraved placeholders: replace with recent Instagram photos -->
       <div class="finds__grid">
         <figure class="find framed reveal">
-          <svg class="sketch" viewBox="0 0 300 300" role="img" aria-label="Mid-century mushroom lamp">
+          <svg class="sketch" data-sketch="lamp" viewBox="0 0 300 300" role="img" aria-label="Mid-century mushroom lamp">
             <g class="ink">
               <path d="M150 40 v-14 M98 58 l-9 -10 M202 58 l9 -10 M72 96 l-13 -4 M228 96 l13 -4" stroke-opacity=".55"/>
               <path class="w-taupe" d="M84 128 Q150 46 216 128 Z"/>
@@ -268,7 +468,7 @@
           <figcaption><span>New arrival</span>Mid-century lamp</figcaption>
         </figure>
         <figure class="find framed reveal">
-          <svg class="sketch" viewBox="0 0 300 300" role="img" aria-label="Vintage denim jacket on a wooden hanger">
+          <svg class="sketch" data-sketch="denim" viewBox="0 0 300 300" role="img" aria-label="Vintage denim jacket on a wooden hanger">
             <g class="ink">
               <path d="M150 36 q0 -14 12 -14 q12 0 10 12"/>
               <path d="M82 62 L150 42 L218 62 Z"/>
@@ -283,7 +483,7 @@
           <figcaption><span>Restock</span>Vintage denim</figcaption>
         </figure>
         <figure class="find framed reveal">
-          <svg class="sketch" viewBox="0 0 300 300" role="img" aria-label="A stack of rare cloth-bound books">
+          <svg class="sketch" data-sketch="books" viewBox="0 0 300 300" role="img" aria-label="A stack of rare cloth-bound books">
             <g class="ink">
               <rect class="w-sage" x="60" y="214" width="180" height="30" rx="3"/>
               <path d="M60 229 H240" stroke-dasharray="1 4"/>
@@ -303,7 +503,7 @@
           <figcaption><span>Featured</span>Rare books</figcaption>
         </figure>
         <figure class="find framed reveal">
-          <svg class="sketch" viewBox="0 0 300 300" role="img" aria-label="Handmade glazed ceramic vases">
+          <svg class="sketch" data-sketch="ceramics" viewBox="0 0 300 300" role="img" aria-label="Handmade glazed ceramic vases">
             <g class="ink">
               <path class="w-blue" d="M92 250 q-42 -60 0 -120 q4 -10 0 -30 h40 q-4 20 0 30 q42 60 0 120 z"/>
               <path d="M78 168 q34 14 68 0 M76 200 q36 12 72 0" stroke-opacity=".6"/>
@@ -320,7 +520,7 @@
           <figcaption><span>Handmade</span>Ceramics</figcaption>
         </figure>
         <figure class="find framed reveal">
-          <svg class="sketch" viewBox="0 0 300 300" role="img" aria-label="Pressed glass goblets and a decanter">
+          <svg class="sketch" data-sketch="glass" viewBox="0 0 300 300" role="img" aria-label="Pressed glass goblets and a decanter">
             <g class="ink">
               <path class="w-glass" d="M54 112 h64 q0 58 -32 64 q-32 -6 -32 -64 z"/>
               <path d="M86 176 v46 M62 226 h48"/>
@@ -336,7 +536,7 @@
           <figcaption><span>Just in</span>Pressed glassware</figcaption>
         </figure>
         <figure class="find framed reveal">
-          <svg class="sketch" viewBox="0 0 300 300" role="img" aria-label="A vintage record player with a spinning vinyl record">
+          <svg class="sketch" data-sketch="vinyl" viewBox="0 0 300 300" role="img" aria-label="A vintage record player with a spinning vinyl record">
             <g class="ink">
               <rect class="w-taupe" x="40" y="112" width="220" height="118" rx="6"/>
               <path d="M40 200 H260"/>
@@ -369,6 +569,61 @@
         </a>
       </div>
     </section>
+
+    <!-- ============ The Lost & Found Board ============ -->
+    <section class="lost" id="lost" aria-labelledby="lost-title">
+      <header class="section-head">
+        <svg class="crest reveal" aria-hidden="true"><use href="#crest"/></svg>
+        <p class="eyebrow reveal">Lost something? Let us find it.</p>
+        <h2 class="reveal" id="lost-title">The Lost &amp; Found Board</h2>
+        <p class="section-head__lede reveal">Tell us what you&rsquo;re hunting for and we&rsquo;ll pin it to the board. When it comes through our doors, we&rsquo;ll stamp it <strong>found</strong> and let you know.</p>
+      </header>
+
+      <div class="lost__layout">
+        <form class="lost__form framed reveal" id="lost-form">
+          <h3>Pin a card to the board</h3>
+          <div class="field-row">
+            <label class="field">
+              <span>First name</span>
+              <input name="firstName" required maxlength="30" autocomplete="given-name">
+            </label>
+            <label class="field field--short">
+              <span>Last initial</span>
+              <input name="lastInitial" maxlength="1" autocomplete="off">
+            </label>
+          </div>
+          <label class="field">
+            <span>Email <small>&mdash; so we can tell you when it&rsquo;s found</small></span>
+            <input name="email" type="email" required maxlength="120" autocomplete="email" inputmode="email">
+          </label>
+          <label class="field">
+            <span>What are you hunting for?</span>
+            <input name="item" required maxlength="80" placeholder="A Pyrex butterprint mixing bowl">
+          </label>
+          <label class="field">
+            <span>Any details? <small>(optional)</small></span>
+            <textarea name="details" rows="3" maxlength="240" placeholder="Size, color, era&mdash;anything that helps us spot it"></textarea>
+          </label>
+          <label class="field field--trap" aria-hidden="true">
+            <span>Leave this empty</span>
+            <input name="website" tabindex="-1" autocomplete="off">
+          </label>
+          <button class="btn btn--ink" type="submit">Post to the board</button>
+          <p class="lost__privacy">Only your first name and last initial appear on the board. Your email stays with us and is used only to tell you when we&rsquo;ve found your item.</p>
+          <p class="lost__status" id="lost-status" role="status"></p>
+        </form>
+
+        <div class="lost__board reveal">
+          <div class="lost__filters" role="group" aria-label="Filter the board">
+            <button type="button" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" data-filter="looking" aria-pressed="false">Still looking</button>
+            <button type="button" data-filter="found" aria-pressed="false">Found</button>
+          </div>
+          <ul class="lost__cards" id="lost-cards"></ul>
+          <p class="lost__empty" id="lost-empty" hidden>The board is waiting for its first card. Tell us what you&rsquo;re hunting for&mdash;you could be the first one we find.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ============ 6. Footer ============ -->
@@ -399,6 +654,8 @@
     <span class="ambience__label">Ambience</span>
   </button>
 
+  <script src="js/config.js"></script>
   <script src="js/main.js" defer></script>
+  <script src="js/features.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,185 @@
+{
+  "_note": "SAMPLE CONTENT for previewing the site with ?demo. Not real inventory, shoppers or totals.",
+  "impact": {
+    "total": 2480,
+    "asOf": "2026-10-04",
+    "nextMilestone": 5000
+  },
+  "finds": [
+    {
+      "title": "Mid-century lamp",
+      "label": "New arrival",
+      "price": "$38",
+      "description": "Walnut stem, amber shade, rewired.",
+      "sketch": "lamp"
+    },
+    {
+      "title": "Vintage denim",
+      "label": "Restock",
+      "price": "",
+      "description": "A fresh rack of broken-in jackets and jeans.",
+      "sketch": "denim"
+    },
+    {
+      "title": "Rare books",
+      "label": "Featured",
+      "price": "",
+      "description": "Cloth-bound classics with gilt spines.",
+      "sketch": "books"
+    },
+    {
+      "title": "Ceramics",
+      "label": "Handmade",
+      "price": "",
+      "description": "Glazed vases and pots from local makers.",
+      "sketch": "ceramics"
+    },
+    {
+      "title": "Pressed glassware",
+      "label": "Just in",
+      "price": "",
+      "description": "Goblets, a decanter and sherbet cups.",
+      "sketch": "glass"
+    },
+    {
+      "title": "Vinyl & hi-fi",
+      "label": "Weekly drop",
+      "price": "",
+      "description": "A crate of jazz and Motown, plus a working turntable.",
+      "sketch": "vinyl"
+    }
+  ],
+  "drawer": [
+    {
+      "title": "Mid-century mushroom lamp",
+      "era": "c. 1960s",
+      "description": "Warm amber shade, walnut stem, rewired and glowing. It makes any corner feel like golden hour.",
+      "price": "$38",
+      "sketch": "lamp"
+    },
+    {
+      "title": "Pressed-glass goblet set",
+      "era": "c. 1940s",
+      "description": "Six goblets and a stoppered decanter, not a chip among them. Made for a long Sunday supper.",
+      "price": "$24",
+      "sketch": "glass"
+    },
+    {
+      "title": "French-country armchair",
+      "era": "c. 1950s",
+      "description": "Carved frame, striped cushion, and the kind of curves they don't make anymore.",
+      "price": "$145",
+      "sketch": "chair"
+    },
+    {
+      "title": "Cloth-bound book bundle",
+      "era": "1920s–1950s",
+      "description": "Five hand-picked hardbacks with gilt spines, perfect for reading or for the shelf.",
+      "price": "$18",
+      "sketch": "books"
+    },
+    {
+      "title": "Portable record player",
+      "era": "c. 1970s",
+      "description": "Tested and spinning, with a crate of jazz records to start you off.",
+      "price": "$65",
+      "sketch": "vinyl"
+    }
+  ],
+  "map": [
+    {
+      "zone": "window",
+      "title": "The Front Window",
+      "blurb": "This week: autumn table settings with amber glass and linen napkins.",
+      "featured": false
+    },
+    {
+      "zone": "glassware",
+      "title": "Glassware & Kitchen",
+      "blurb": "Fresh this week: a full set of Depression-glass sherbets and two Pyrex mixing bowls.",
+      "featured": true
+    },
+    {
+      "zone": "linens",
+      "title": "Linens & Textiles",
+      "blurb": "Hand-stitched quilts, embroidered tea towels and a stack of heavy linen tablecloths.",
+      "featured": false
+    },
+    {
+      "zone": "furniture",
+      "title": "Furniture & Décor",
+      "blurb": "A carved armchair, a pair of brass lamps and a pine dry sink.",
+      "featured": false
+    },
+    {
+      "zone": "donations",
+      "title": "Donation Drop-off",
+      "blurb": "Bring pre-loved pieces to the back during regular open hours. Every donation gets a dignified second act.",
+      "featured": false
+    },
+    {
+      "zone": "books",
+      "title": "Books & Records",
+      "blurb": "New crate of jazz and Motown vinyl, plus a shelf of cloth-bound classics.",
+      "featured": false
+    },
+    {
+      "zone": "clothing",
+      "title": "Clothing & Denim",
+      "blurb": "Vintage Levi's restock and a rack of wool coats for the cold months.",
+      "featured": false
+    },
+    {
+      "zone": "counter",
+      "title": "Checkout & Coffee",
+      "blurb": "Pay with cash, card, Cash App or Venmo. Found treasures wait here for their new homes.",
+      "featured": false
+    }
+  ],
+  "lost": [
+    {
+      "name": "Dana R.",
+      "item": "Pyrex butterprint mixing bowl",
+      "details": "The turquoise one, medium size. My grandmother had the whole set.",
+      "status": "found",
+      "posted": "2026-09-28",
+      "foundNote": "Waiting for you at the counter!"
+    },
+    {
+      "name": "Marcus T.",
+      "item": "Carhartt chore coat, size L",
+      "details": "Brown duck canvas, broken in is fine.",
+      "status": "looking",
+      "posted": "2026-10-06"
+    },
+    {
+      "name": "Ellie",
+      "item": "Hardback Nancy Drew books",
+      "details": "Yellow spines, any titles from the 1960s.",
+      "status": "looking",
+      "posted": "2026-10-05"
+    },
+    {
+      "name": "Jordan P.",
+      "item": "Small mid-century nightstand",
+      "details": "",
+      "status": "found",
+      "posted": "2026-09-20",
+      "foundNote": "A teak one came in Tuesday."
+    },
+    {
+      "name": "Rosa M.",
+      "item": "Corelle Spring Blossom plates",
+      "details": "The green flowers. Even two or three would help!",
+      "status": "looking",
+      "posted": "2026-10-08"
+    },
+    {
+      "name": "Sam K.",
+      "item": "Fisher-Price record player",
+      "details": "For my daughter's room, with or without records.",
+      "status": "looking",
+      "posted": "2026-10-09"
+    }
+  ]
+}

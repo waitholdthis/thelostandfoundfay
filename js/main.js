@@ -34,7 +34,7 @@
   document.addEventListener("click", function (e) {
     if (links.classList.contains("is-open") && !nav.contains(e.target)) setMenu(false);
   });
-  window.matchMedia("(max-width: 720px)").addEventListener("change", function () { setMenu(false); });
+  window.matchMedia("(max-width: 1080px)").addEventListener("change", function () { setMenu(false); });
 
   /* ---------- Reveal on scroll ---------- */
   var revealEls = document.querySelectorAll(".reveal");

@@ -1,0 +1,60 @@
+{
+  "impact": {
+    "total": 0,
+    "asOf": "",
+    "nextMilestone": 1000
+  },
+  "finds": [],
+  "drawer": [],
+  "map": [
+    {
+      "zone": "window",
+      "title": "The Front Window",
+      "blurb": "Our little stage on Dunn Road. Whatever is catching the afternoon light this week is usually the first thing to go.",
+      "featured": false
+    },
+    {
+      "zone": "glassware",
+      "title": "Glassware & Kitchen",
+      "blurb": "Vintage glassware, pressed-glass goblets, mixing bowls and the odd treasured casserole dish, sorted by hand one cup at a time.",
+      "featured": false
+    },
+    {
+      "zone": "linens",
+      "title": "Linens & Textiles",
+      "blurb": "Textured linens, quilts, tablecloths and throws, folded and stacked for an unhurried browse.",
+      "featured": false
+    },
+    {
+      "zone": "furniture",
+      "title": "Furniture & Décor",
+      "blurb": "Heirloom wooden pieces, chairs with stories in their joints, lamps and eclectic home accents.",
+      "featured": false
+    },
+    {
+      "zone": "donations",
+      "title": "Donation Drop-off",
+      "blurb": "Bring pre-loved pieces to the back during regular open hours. Every donation gets a dignified second act, and helps us give to St. Jude.",
+      "featured": false
+    },
+    {
+      "zone": "books",
+      "title": "Books & Records",
+      "blurb": "Rare books, well-loved paperbacks and a crate of vinyl worth flipping through twice.",
+      "featured": false
+    },
+    {
+      "zone": "clothing",
+      "title": "Clothing & Denim",
+      "blurb": "Racks of vintage denim, everyday essentials and one-of-a-kind finds, restocked constantly.",
+      "featured": false
+    },
+    {
+      "zone": "counter",
+      "title": "Checkout & Coffee",
+      "blurb": "Pay with cash, card, Cash App or Venmo, and say hello. This is where found treasures wait for their new homes.",
+      "featured": false
+    }
+  ],
+  "lost": []
+}

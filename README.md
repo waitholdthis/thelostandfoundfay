@@ -22,6 +22,33 @@ js/main.js        Nav, scroll reveals, dust motes, "Open now" stamp, ambience to
 assets/           Favicon (put real photos here)
 ```
 
+## Live features
+
+| Feature | Section | Where its content comes from |
+| --- | --- | --- |
+| **Drawer of the Day** | `#drawer` | One featured find per day (dated rows first, otherwise rotating) |
+| **Shop Map** | `#map` | Corner descriptions + "this week's corner" (the plan itself is in `index.html`) |
+| **St. Jude running total** | `#impact` | Total, "updated on" date and next milestone |
+| **Lost & Found Board** | `#lost` | Shoppers' wish-list cards, approved by the shoppe and stamped *found* |
+| **New Finds** | `#finds` | Items added in the Shoppe Office; the six newest shown (placeholder drawings until then) |
+
+### Shoppe Office (`admin.html`)
+
+The owners' admin page for everything above: add New Finds with a phone photo (resized on the
+device, stored in Google Drive), set the Drawer of the Day, update the St. Jude total, pick this
+week's map corner, and approve or stamp Lost Board cards. Sign-in uses a passcode that the
+Google script generates and emails to the shoppe. It's checked server-side, and repeated wrong
+guesses lock it for 15 minutes. The page is `noindex` and isn't linked from the site.
+
+Everything reads from and saves to a **Google Sheet** once `sheetApi` is set in `js/config.js`.
+Setup takes about 10 minutes; see [google-sheets/SETUP.md](google-sheets/SETUP.md). Until then the
+site reads `data/site-data.json`, Lost Board cards are sent to the shoppe by email, and the
+Shoppe Office runs in **practice mode** (saved in that browser only; view with `?practice`).
+
+- **Preview with sample content:** add `?demo` to the address (reads `data/demo-data.json`).
+- **Privacy:** board cards show first name + last initial only. Emails stay in the Sheet and are
+  never sent to the website. New cards stay `pending` until the shoppe approves them.
+
 ## Brand & style
 
 The look is taken from the shoppe sign (`assets/the-lost-and-found-sign.jpg`, shown in the hero):
